@@ -1,34 +1,54 @@
 class Ship{
-    constructor(x,y,vx,vy){
-        this.pos=createVector(x,y);
-        this.vel=createVector(vx,vy);
-        this.height=70;
-        this.width=40;
-        this.acc=createVector(0,0);
+    /**
+     * Constructor for Ship class
+     * 
+     * @param {number} x Starting x position
+     * @param {number} y Starting y position
+     * @param {number} vx Starting x velocity
+     * @param {number} vy Starting y velocity
+     */
+    constructor(x, y, vx, vy){
+        this.pos = createVector(x,y);
+        this.vel = createVector(vx,vy);
+        this.height = 70;
+        this.width = 40;
+        this.acc = createVector(0,0);
     }
 
-    move(){
+    /**
+     * Update ship position based on velocity and deltaTime
+     */
+    move() {
         //convert deltaTime for current frame to seconds
-        let dt=deltaTime/1000;
+        let dt = deltaTime/1000;
         //make dv a small fraction of the velocity vector for euler integration
-        let dv=createVector(this.vel.x*dt,this.vel.y*dt);
+        let dv = createVector(this.vel.x*dt,this.vel.y*dt);
         //euler integration add position to dv every frame
         this.pos.add(dv);
-        if(this.pos.x>windowWidth){
-            this.pos.x=0;
+        if(this.pos.x > windowWidth){
+            this.pos.x = 0;
         }
     }
 
-    steerLeft(){
+    /**
+     * Steer the ship left by rotating the velocity vector counter-clockwise
+     */
+    steerLeft() {
         this.vel.rotate(-Math.PI/25);
     }
 
-    steerRight(){
+    /**
+     * Steer the ship right by rotating the velocity vector clockwise
+     */
+    steerRight() {
         this.vel.rotate(Math.PI/25);
     }
 
-    render(){
-        let angle=atan2(this.vel.y,this.vel.x);
+    /**
+     * Render the ship as a triangle on the canvas
+     */
+    render() {
+        let angle=atan2(this.vel.y, this.vel.x);
         //CONTROL SHIP FROM TIP
         /*
         let p1=createVector(-this.height,-this.width/2);
@@ -57,16 +77,16 @@ class Ship{
     */
       //CONTROL SHIP FROM MIDDLE OF HEIGHT
       
-      let tip=createVector(this.height/2,0);
-      let left=createVector(-this.height/2,-this.width/2);
-      let right=createVector(-this.height/2,this.width/2);
+      let tip = createVector(this.height/2,0);
+      let left = createVector(-this.height/2,-this.width/2);
+      let right = createVector(-this.height/2,this.width/2);
       tip.rotate(angle);
       left.rotate(angle);
       right.rotate(angle);
       triangle(
-       this.pos.x+tip.x,this.pos.y+tip.y,
-       this.pos.x+left.x,this.pos.y+left.y,
-       this.pos.x+right.x,this.pos.y+right.y
+       this.pos.x + tip.x, this.pos.y + tip.y,
+       this.pos.x + left.x, this.pos.y + left.y,
+       this.pos.x + right.x, this.pos.y + right.y
       );
       
     }
