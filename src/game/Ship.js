@@ -6,8 +6,9 @@ class Ship{
      * @param {number} y Starting y position
      * @param {number} vx Starting x velocity
      * @param {number} vy Starting y velocity
+     * @param {number} player Player number (-1 or 1)
      */
-    constructor(x, y, vx, vy) {
+    constructor(x, y, vx, vy, player = -1) {
         this.pos = createVector(x,y);
         this.vel = createVector(vx, vy);
         this.originalPos = this.pos.copy();
@@ -15,6 +16,7 @@ class Ship{
         this.height = 70;
         this.width = 40;
         this.acc = createVector(0,0);
+        this.player = player;
     }
 
     /**
