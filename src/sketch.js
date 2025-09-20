@@ -1,12 +1,6 @@
 // Declare variables to store canvas dimensions for easy access and to avoid changes in size
 let width, height;
 
-// Declare new StarField object
-let starField;
-
-// Declare new PlanetPair object
-let planetPair;
-
 // Declare new Ship object
 let ship;
 
@@ -27,6 +21,8 @@ function setup() {
   // Create a new Game instance
   game = new Game(width, height);
 
+  game.createShip();
+
   // Initial render
   game.render();
 }
@@ -42,3 +38,7 @@ function draw() {
   // Render the game
   game.render();
 }
+
+// function mouseClicked() {
+//   game.createShip();
+// }
