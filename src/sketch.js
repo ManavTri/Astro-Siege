@@ -1,13 +1,10 @@
-// Initialize an array to hold star objects
-const stars = [];
-
-// Store canvas dimensions in variables for easy access and to avoid changes in size
+// Declare variables to store canvas dimensions for easy access and to avoid changes in size
 let width, height;
 
 // Declare new StarField object
 let starField;
 
-// Setup function to initialize the canvas and stars
+// Setup function to initialize the canvas and StarField
 function setup() {
   width = windowWidth;
   height = windowHeight;
@@ -28,5 +25,5 @@ function draw() {
   background(0);
 
   // Update and render the star field
-  starField.run();
+  starField.render();
 }
