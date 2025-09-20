@@ -2,10 +2,15 @@ class Game {
     /**
      * Constructor for the Game class
      * 
-     * @param {number} width Width of the canvas
-     * @param {number} height Height of the canvas
+     * @param {number} width Width of the canvas (default: windowWidth)
+     * @param {number} height Height of the canvas (default: windowHeight)
      */
     constructor(width = windowWidth, height = windowHeight) {
+        this.width = width;
+        this.height = height;
+
+        this.ship = null;
+        
         // Create a new StarField with 1000 stars
         this.starField = new StarField(1000, width, height);
 
@@ -14,14 +19,29 @@ class Game {
 
         this.turn = -1;
 
-        this.planetPair.turn = this.turn;
+        this.obstacles = [];
     }
 
     /**
      * Updates the game elements
      */
     update() {
-        
+        if (this.ship != null) {
+            this.keyHeld();
+            this.ship.update();
+            if (this.planetPair.playerCollision(this.ship) || this.ship.isOffScreen(this.width, this.height)) {
+                this.removeShip();
+                this.nextTurn();
+            }
+        }
+    }
+
+    /**
+     * Advances to the next turn
+     */
+    nextTurn() {
+        this.turn *= -1;
+        this.createShip();
     }
 
     /**
@@ -30,6 +50,26 @@ class Game {
     render() {
         this.starField.render();
         this.planetPair.render();
+        if (this.ship != null) {
+            this.ship.render();
+        }
+    }
+
+    /**
+     * Creates a new ship at the specified position with the given velocity
+     */
+    createShip(pos = createVector(this.width / 2 + this.turn * (this.width / 2.1)), vel = createVector(this.turn * -200, 0)) {
+        if (this.ship == null) {
+            this.ship = new Ship(pos, vel, this.turn);
+            // console.log("created ship for player " + this.turn);
+        }
+    }
+
+    /**
+     * Removes the ship from the game
+     */
+    removeShip() {
+        this.ship = null;
     }
 
     /**
