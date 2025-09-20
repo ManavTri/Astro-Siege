@@ -35,14 +35,14 @@ class Ship{
      * Steer the ship left by rotating the velocity vector counter-clockwise
      */
     steerLeft() {
-        this.vel.rotate(-Math.PI/25);
+        this.vel.rotate(-Math.PI/50);
     }
 
     /**
      * Steer the ship right by rotating the velocity vector clockwise
      */
     steerRight() {
-        this.vel.rotate(Math.PI/25);
+        this.vel.rotate(Math.PI/50);
     }
 
     /**
