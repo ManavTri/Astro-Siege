@@ -31,6 +31,19 @@ class Ship{
         this.pos.add(dv);
     }
 
+    moveArc(center, radius, angleChange){
+        //move the ship in a circular arc around the center point with the given radius and angle change
+        //convert deltaTime for current frame to seconds
+        let dt= deltaTime / 1000;
+        this.orbitAngle += angleChange * dt;
+        this.pos.x = center.x + radius * cos(this.orbitAngle);
+        this.pos.y = center.y + radius * sin(this.orbitAngle);
+        //update velocity to be perpendicular to the circle
+        this.vel.x = cos(this.orbitAngle);
+        this.vel.y = sin(this.orbitAngle);
+        this.render();
+    }
+
     /**
      * Steer the ship left by rotating the velocity vector counter-clockwise
      */
