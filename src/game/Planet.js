@@ -44,6 +44,14 @@ class Planet {
      * @param {p5.Vector} p3 Third vertex of the triangle
      */
     playerCollision(p1, p2, p3) {
-        
+        let d1, d2, d3;
+        d1=dist(this.side * (this.width / 2 - this.size * 0.15), 0, p1.x, p1.y);
+        d2=dist(this.side * (this.width / 2 - this.size * 0.15), 0, p2.x, p2.y);
+        d3=dist(this.side * (this.width / 2 - this.size * 0.15), 0, p3.x, p3.y);
+        if (d1 < this.size / 2 || d2 < this.size / 2 || d3 < this.size / 2) {
+            console.log("Collision detected with planet!");
+            return true;
+        }
+        return false;
     }
 }
