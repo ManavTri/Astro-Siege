@@ -1,0 +1,15 @@
+class Obstacle {
+    constructor(pos, diameter) {
+        this.pos = pos;
+        this.diam = size;
+    }
+
+    collidesWithPlayer(playerPos) {
+        let rad = diam/2;
+        if (Math.sqrt(Math.pow(playerPos.x - this.pos.x, 2) +
+        Math.pow(playerPos.y - this.pos.y, 2)) <= rad) {
+            return true;
+        }
+        return false;
+    }
+}
