@@ -5,11 +5,11 @@ class Star {
         this.size = size;
     }
 
-    move() {
-        this.pos.add(this.direction.normalize().mult(this.size * 0.1));
+    update() {
+        this.pos.add(this.direction.normalize().mult(this.size * 0.5));
     }
 
-    show() {
+    render() {
         fill(255);
         noStroke();
         circle(this.pos.x, this.pos.y, this.size);
