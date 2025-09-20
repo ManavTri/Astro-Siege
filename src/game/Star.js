@@ -16,7 +16,7 @@ class Star {
      * Updates the star's position based on its direction and size. Stars move faster if they are larger.
      */
     update() {
-        this.pos.add(this.direction.normalize().mult(this.size * 0.5));
+        this.pos.add(this.direction.normalize().mult(this.size * 0.1));
     }
 
     /**
