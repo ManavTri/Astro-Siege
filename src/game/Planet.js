@@ -23,7 +23,7 @@ class Planet {
             fill(this.color);
             noStroke();
             translate(this.width / 2, this.height / 2);
-            circle(this.side * this.width / 2, 0, this.size);
+            circle(this.side * (this.width / 2 - this.size * 0.15), 0, this.size);
         pop();
     }
 
