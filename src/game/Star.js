@@ -1,12 +1,12 @@
 class Star {
-    constructor(pos, size = random(1, 5), direction = new p5.Vector(-1, 0)) {
-        this.pos = pos || new p5.Vector(random(size, windowWidth - size), random(size, windowHeight - size));
+    constructor(pos, size = random(1, 5), direction = createVector(-1, 0)) {
+        this.pos = pos || createVector(random(size, windowWidth - size), random(size, windowHeight - size));
         this.direction = direction;
         this.size = size;
     }
 
     move() {
-        this.pos.add(this.direction * this.size * 0.5);
+        this.pos.add(this.direction.normalize().mult(this.size * 0.5));
     }
 
     show() {
