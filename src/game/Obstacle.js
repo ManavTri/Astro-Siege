@@ -1,7 +1,7 @@
 class Obstacle {
     constructor(pos, diameter) {
         this.pos = pos;
-        this.diam = size;
+        this.diam = diameter;
     }
 
     collidesWithPlayer(playerPos) {
@@ -13,3 +13,4 @@ class Obstacle {
         return false;
     }
 }
+
