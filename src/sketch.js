@@ -27,8 +27,12 @@ function setup() {
   // Create a new Game instance
   game = new Game(width, height);
 
+  game.createShip();
+
   // Initial render
   game.render();
+
+  console.log("Setup complete");
 }
 
 // Draw function to update and render stars each frame
@@ -42,3 +46,7 @@ function draw() {
   // Render the game
   game.render();
 }
+
+// function mouseClicked() {
+//   game.createShip();
+// }
