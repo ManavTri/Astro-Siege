@@ -21,8 +21,7 @@ class Game {
      * Updates the game elements
      */
     update() {
-        this.starField.update();
-        this.planetPair.update();
+        
     }
 
     /**
