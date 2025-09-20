@@ -1,21 +1,25 @@
 // Initialize an array to hold star objects
 const stars = [];
 
+// Store canvas dimensions in variables for easy access and to avoid changes in size
+let width, height;
+
+// Declare new StarField object
+let starField;
+
 // Setup function to initialize the canvas and stars
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  width = windowWidth;
+  height = windowHeight;
+  createCanvas(width, height);
   frameRate(60); // Set frame rate to 60 FPS
   background(0); // Set background to black
-  
-  // Create 1000 stars with random positions and sizes
-  for (let i = 0; i < 1000; i++) {
-    stars.push(new Star());
-  }
 
-  // Initial render of all stars
-  for (let star of stars) {
-    star.render();
-  }
+  // Create a new StarField with 1000 stars
+  starField = new StarField(1000, width, height);
+
+  // Initial render of the star field
+  starField.render();
 }
 
 // Draw function to update and render stars each frame
@@ -23,14 +27,6 @@ function draw() {
   // Clear the background each frame
   background(0);
 
-  // Update and render each star
-  for (let star of stars) {
-    star.update();
-
-    if (star.isOffScreen()) {
-      star.wrap();
-    }
-
-    star.render();
-  }
+  // Update and render the star field
+  starField.update();
 }
