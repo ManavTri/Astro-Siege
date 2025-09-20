@@ -49,7 +49,6 @@ class Ship{
      * Render the ship as a triangle on the canvas
      */
     render() {
-        let angle = atan2(this.vel.y, this.vel.x);
         //CONTROL SHIP FROM TIP
         /*
         let p1=createVector(-this.height,-this.width/2);
@@ -77,18 +76,8 @@ class Ship{
        );
     */
       //CONTROL SHIP FROM MIDDLE OF HEIGHT
-      
-      let tip = createVector(this.height/2,0);
-      let left = createVector(-this.height/2,-this.width/2);
-      let right = createVector(-this.height/2,this.width/2);
-      tip.rotate(angle);
-      left.rotate(angle);
-      right.rotate(angle);
-      triangle(
-       this.pos.x + tip.x, this.pos.y + tip.y,
-       this.pos.x + left.x, this.pos.y + left.y,
-       this.pos.x + right.x, this.pos.y + right.y
-      );
+      let vertices = this.getVertices();
+      triangle(vertices[0].x, vertices[0].y, vertices[1].x, vertices[1].y, vertices[2].x, vertices[2].y);
     }
 
     /**
@@ -107,6 +96,24 @@ class Ship{
     reset() {
         this.pos = this.originalPos.copy();
         this.vel = this.originalVel.copy();
+    }
+
+    /**
+     * Get the vertices of the ship triangle for collision detection
+     * 
+     * @returns {Array<p5.Vector>} Array of p5.Vector representing the vertices of the ship triangle
+     */
+    getVertices() {
+        let angle = atan2(this.vel.y, this.vel.x);
+        let tip = createVector(this.height / 2,0);
+        let left = createVector(-this.height / 2, -this.width / 2);
+        let right = createVector(-this.height / 2, this.width / 2);
+        tip.rotate(angle);
+        left.rotate(angle);
+        right.rotate(angle);
+        return [createVector(this.pos.x + tip.x, this.pos.y + tip.y),
+                createVector(this.pos.x + left.x, this.pos.y + left.y),
+                createVector(this.pos.x + right.x, this.pos.y + right.y)];
     }
 
     /**
