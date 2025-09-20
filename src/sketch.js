@@ -9,3 +9,14 @@ function setup() {
     star.show();
   }
 }
+
+function draw() {
+  background(0);
+  for (let star of stars) {
+    star.move();
+    if (star.isOffScreen()) {
+      star.wrap();
+    }
+    star.show();
+  }
+}
