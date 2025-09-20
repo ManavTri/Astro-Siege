@@ -7,9 +7,11 @@ class Ship{
      * @param {number} vx Starting x velocity
      * @param {number} vy Starting y velocity
      */
-    constructor(x, y, vx, vy){
+    constructor(x, y, vx, vy) {
         this.pos = createVector(x,y);
         this.vel = createVector(vx, vy);
+        this.originalPos = this.pos.copy();
+        this.originalVel = this.vel.copy();
         this.height = 70;
         this.width = 40;
         this.acc = createVector(0,0);
@@ -85,6 +87,24 @@ class Ship{
        this.pos.x + left.x, this.pos.y + left.y,
        this.pos.x + right.x, this.pos.y + right.y
       );
+    }
+
+    /**
+     * Check if the ship is off the screen
+     * 
+     * @returns {boolean} True if the ship is off the screen, false otherwise
+     */
+    isOffScreen(width = windowWidth, height = windowHeight) {
+        return (this.pos.x < -this.height || this.pos.x > width + this.height ||
+                this.pos.y < -this.height || this.pos.y > height + this.height);
+    }
+
+    /**
+     * Reset the ship to its original position and velocity
+     */
+    reset() {
+        this.pos = this.originalPos.copy();
+        this.vel = this.originalVel.copy();
     }
 
     /**
