@@ -1,12 +1,6 @@
 // Declare variables to store canvas dimensions for easy access and to avoid changes in size
 let width, height;
 
-// Declare new StarField object
-let starField;
-
-// Declare new PlanetPair object
-let planetPair;
-
 // Declare new Ship object
 let ship;
 
@@ -31,8 +25,6 @@ function setup() {
 
   // Initial render
   game.render();
-
-  console.log("Setup complete");
 }
 
 // Draw function to update and render stars each frame

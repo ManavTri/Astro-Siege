@@ -20,6 +20,8 @@ class Game {
         this.turn = -1;
 
         this.obstacles = [];
+
+        this.playing = false;
     }
 
     /**
@@ -27,11 +29,16 @@ class Game {
      */
     update() {
         if (this.ship !== null) {
-            this.keyHeld();
-            this.ship.update();
-            if (this.planetPair.playerCollision(this.ship) || this.ship.isOffScreen(this.width, this.height)) {
-                this.removeShip();
-                this.nextTurn();
+            if (!this.playing) {
+                this.startGame();
+                this.ship.moveArc(this.getPlanetPos(), this.planetPair.size * 1.1);
+            } else {
+                this.keyHeld();
+                this.ship.update();
+                if (this.planetPair.playerCollision(this.ship) || this.ship.isOffScreen(this.width, this.height)) {
+                    this.removeShip();
+                    this.nextTurn();
+                }
             }
         }
     }
@@ -41,6 +48,7 @@ class Game {
      */
     nextTurn() {
         this.turn *= -1;
+        this.playing = false;
         this.createShip();
     }
 
@@ -61,12 +69,21 @@ class Game {
      * @param {p5.Vector} pos Starting position of the ship (default: left or right side based on turn)
      * @param {p5.Vector} vel Starting velocity of the ship (default: towards center based on turn)
      */
-    createShip(pos = createVector(this.width / 2 + this.turn * (this.width / 2.25), this.height / 2), vel = createVector(this.turn * -200, 0)) {
+    createShip(pos = this.getPlanetPos(), vel = createVector(this.turn * -200, 0)) {
         console.log("creating ship for player " + this.turn);
         if (this.ship === null) {
             this.ship = new Ship(pos.x, pos.y, vel.x, vel.y, this.turn);
             console.log("created ship for player " + this.turn);
         }
+    }
+
+    /**
+     * Gets the position of the planet for the current turn
+     * 
+     * @returns {p5.Vector} Position of the planet for the current turn
+     */
+    getPlanetPos() {
+        return (this.turn < 0) ? this.planetPair.planets[0].pos : this.planetPair.planets[1].pos;
     }
 
     /**
@@ -87,6 +104,15 @@ class Game {
         }
         if (keyIsDown(68) || keyIsDown(39)) { // 'D' or Right Arrow
             this.ship.steerRight();
+        }
+    }
+
+    /**
+     * Starts the game, allowing the ship to move freely
+     */
+    startGame() {
+        if (keyIsDown(32)) { // Spacebar
+            this.playing = true;
         }
     }
 }
