@@ -25,9 +25,6 @@ class Ship{
         let dv = createVector(this.vel.x * dt, this.vel.y * dt);
         //euler integration add position to dv every frame
         this.pos.add(dv);
-        if (this.pos.x > windowHeight) {
-            this.pos.x = 0;
-        }
     }
 
     /**
