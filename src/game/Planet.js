@@ -33,4 +33,17 @@ class Planet {
     switchSide() {
         this.side *= -1;
     }
+
+    /**
+     * Handle collision detection with a triangle defined by points p1, p2, and p3.
+     * 
+     * @returns {boolean} True if the planet collides with a triangle, false otherwise.
+     * 
+     * @param {p5.Vector} p1 First vertex of the triangle
+     * @param {p5.Vector} p2 Second vertex of the triangle
+     * @param {p5.Vector} p3 Third vertex of the triangle
+     */
+    playerCollision(p1, p2, p3) {
+        
+    }
 }
