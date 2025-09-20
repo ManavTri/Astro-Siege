@@ -17,6 +17,7 @@ class Ship{
         this.width = 40;
         this.acc = createVector(0,0);
         this.player = player;
+        this.orbitAngle=0;
     }
 
     /**
@@ -41,7 +42,6 @@ class Ship{
         //update velocity to be perpendicular to the circle
         this.vel.x = cos(this.orbitAngle);
         this.vel.y = sin(this.orbitAngle);
-        this.render();
     }
 
     /**
