@@ -57,6 +57,11 @@ function draw() {
   // Move and render the ship
   ship.run();
 
+  // Check for collision between the ship and the planets
+  if (planetPair.playerCollision(ship)) {
+    ship.reset();
+  }
+
   // Check if the ship is off the screen and reset its position if necessary
   if (ship.isOffScreen(width, height)) {
     ship.reset();
