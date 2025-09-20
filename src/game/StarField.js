@@ -21,12 +21,11 @@ class StarField {
     update() {
         for (let star of this.stars) {
             star.update();
+            
             if (star.isOffScreen(this.width, this.height)) {
                 star.wrap(this.width, this.height);
             }
         }
-
-        this.render();
     }
 
     /**
@@ -36,5 +35,13 @@ class StarField {
         for (let star of this.stars) {
             star.render();
         }
+    }
+
+    /**
+     * Updates and renders the star field.
+     */
+    run() {
+        this.update();
+        this.render();
     }
 }
