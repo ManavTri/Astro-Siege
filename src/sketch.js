@@ -1,4 +1,3 @@
-import 'p5' from 'Library/p5.min.js';
 let stars = [];
 function setup() {
   createCanvas(windowWidth, windowHeight);
