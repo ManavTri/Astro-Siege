@@ -32,4 +32,23 @@ class PlanetPair {
             planet.switchSide();
         }
     }
+
+    /**
+     * Checks for collision between the ship and either planet.
+     * 
+     * @returns {boolean} True if the ship collides with opposite player's planet, false otherwise
+     * 
+     * @param {Ship} ship The ship to check for collision
+     */
+    playerCollision(ship) {
+        for (let planet of this.planets) {
+            if (planet.side !== ship.player) {
+                let vertices = ship.getVertices();
+                if (planet.playerCollision(vertices[0], vertices[1], vertices[2])) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 }
