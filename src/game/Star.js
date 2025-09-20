@@ -6,7 +6,7 @@ class Star {
     }
 
     move() {
-        this.pos.add(this.direction.normalize().mult(this.size * 0.25));
+        this.pos.add(this.direction.normalize().mult(this.size * 0.1));
     }
 
     show() {
