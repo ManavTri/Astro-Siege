@@ -28,5 +28,5 @@ function draw() {
   background(0);
 
   // Update and render the star field
-  starField.update();
+  starField.run();
 }
