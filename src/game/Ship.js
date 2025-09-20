@@ -9,7 +9,7 @@ class Ship{
      */
     constructor(x, y, vx, vy){
         this.pos = createVector(x,y);
-        this.vel = createVector(vx,vy);
+        this.vel = createVector(vx, vy);
         this.height = 70;
         this.width = 40;
         this.acc = createVector(0,0);
@@ -20,12 +20,12 @@ class Ship{
      */
     move() {
         //convert deltaTime for current frame to seconds
-        let dt = deltaTime/1000;
+        let dt = deltaTime / 1000;
         //make dv a small fraction of the velocity vector for euler integration
-        let dv = createVector(this.vel.x*dt,this.vel.y*dt);
+        let dv = createVector(this.vel.x * dt, this.vel.y * dt);
         //euler integration add position to dv every frame
         this.pos.add(dv);
-        if(this.pos.x > windowWidth){
+        if (this.pos.x > windowWidth){
             this.pos.x = 0;
         }
     }
@@ -48,7 +48,7 @@ class Ship{
      * Render the ship as a triangle on the canvas
      */
     render() {
-        let angle=atan2(this.vel.y, this.vel.x);
+        let angle = atan2(this.vel.y, this.vel.x);
         //CONTROL SHIP FROM TIP
         /*
         let p1=createVector(-this.height,-this.width/2);
@@ -88,6 +88,13 @@ class Ship{
        this.pos.x + left.x, this.pos.y + left.y,
        this.pos.x + right.x, this.pos.y + right.y
       );
-      
+    }
+
+    /**
+     * Run the ship by moving and rendering it
+     */
+    run() {
+        this.move();
+        this.render();
     }
 }
