@@ -8,13 +8,6 @@ Game of rockets
 * Win if only you can make it to the other planet
 
 Hackers:
-* Manav Trivedy -
+* Manav Trivedy - mst79@pitt.edu
 * Colton R -
 * Peter C -
-
-To-Do:
-* Finish main menu screen with scrolling stars (use StarField object)
-* Finish Game class
-* Finish game logic
-* Add sound
-* Add particle effects
