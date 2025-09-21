@@ -40,7 +40,7 @@ class Game {
                 // console.log("waiting to start game for player " + this.ship.player);
                 this.count++;
                 this.startGame();
-                this.ship.moveArc(this.getPlanetPos(), this.getPlanet().size * 1.1);
+                this.ship.moveArc(this.getPlanetPos(), this.getPlanet().size * 0.85);
                 if (this.playing) {
                     this.ship.resetVelocity();
                 }

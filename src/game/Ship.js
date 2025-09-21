@@ -13,8 +13,8 @@ class Ship{
         this.vel = createVector(vx, vy);
         this.originalPos = this.pos.copy();
         this.originalVel = this.vel.copy();
-        this.height = 70;
-        this.width = 40;
+        this.height = 35;
+        this.width = 20;
         this.acc = createVector(0,0);
         this.player = player;
         this.orbitAngle = this.player === -1 ? 0 : Math.PI; // start on side depending on player
