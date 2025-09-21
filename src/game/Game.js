@@ -26,6 +26,8 @@ class Game {
         this.count = 0;
 
         this.createShip();
+
+        this.createToolbar();
     }
 
     /**
@@ -83,6 +85,9 @@ class Game {
      * Renders the game elements
      */
     render() {
+        if(!this.playing){
+            this.toolbar.render();
+        }
         this.starField.render();
         this.planetPair.render();
         if (this.ship !== null) {
@@ -107,6 +112,9 @@ class Game {
         }
     }
 
+    createToolbar() {
+        this.toolbar = new Toolbar();
+    }
     /**
      * Get planet in PlanetPair for the current turn
      * 

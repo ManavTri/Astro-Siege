@@ -1,17 +1,18 @@
 class Toolbar {
     constructor(){
+        this.windowHeight = windowHeight;
         this.height=50;
         this.buttons=[
-            {type:"blackhole",x:50,y:25,w:100,h:30,label:"Black Hole"},
-            {type:"asteroid",x:200,y:25,w:100,h:30,label:"Asteroid"},
-            {type:"clear",x:350,y:25,w:100,h:30,label:"Clear Obstacles"}
+            {type:"blackhole",x:50,y:this.windowHeight-75,w:100,h:30,label:"Black Hole"},
+            {type:"asteroid",x:200,y:this.windowHeight-75,w:100,h:30,label:"Asteroid"},
+            {type:"clear",x:350,y:this.windowHeight-75,w:100,h:30,label:"Clear Obstacles"}
         ];
         this.selected="clear";
     }
     render(){
         push();
         fill(200);
-        rect(0,0,width,this.height);
+        rect(0,windowHeight-this.height,width,windowHeight);
         for(let button of this.buttons){
             fill(255);
             rect(button.x,button.y,button.w,button.h);
