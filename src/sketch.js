@@ -126,7 +126,7 @@ function tutotialScreen() {
   textSize(32);
   text("Tutorial", width / 2, height / 6);
   textSize(16);
-  text("This is a two player game.\nPlace obstacles on your turn, but watch out because you also have to get to the other side!\nUse W, Up Arrow, or Space Bar to launch your rocket.\nUse A & D or Left & Right Arrow to steer.\nClick to continue.", width / 2, height / 2);
+  text("This is a two player game.\nPlace obstacles in the build phase for your opponent, but watch out because obstacles stick around!\nUse W, Up Arrow, or Space Bar to launch your rocket.\nUse A & D or Left & Right Arrow to steer.\nClick to continue.", width / 2, height / 2);
   // sceneSelector = 2;
 }
 
@@ -150,6 +150,8 @@ function endScreen() {
     textSize(16);
     text("Nobody wins!", width / 2, height / 2);
   }
+  textSize(12);
+  text("Click to continue.", width / 2, height / 6);
   // mainMenu(); // return to main menu
 }
 
