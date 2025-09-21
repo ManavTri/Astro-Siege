@@ -1,4 +1,5 @@
 let running = false; // Game state variable to track if the game is running or in main menu
+let showTutorial = true; // Variable to control display of tutorial screen
 
 // Declare variables to store canvas dimensions for easy access and to avoid changes in size
 let width, height;
@@ -51,6 +52,9 @@ function mouseClicked() {
           game.obstacles=[];
       }
     }
+  } else if (!running && showTutorial) {
+    tutotialScreen(); // Display tutorial screen  
+    showTutorial = false;
   } else {
       running = true; // starts the game
 
@@ -73,6 +77,16 @@ function mainMenu() {
   text("Astro-Siege", width / 2, height / 3);
   textSize(32);
   text("Click to Start", width / 2, height / 2);
+}
+
+function tutotialScreen() {
+  background(0);
+  textAlign(CENTER, CENTER);
+  fill(255);
+  textSize(32);
+  text("Tutorial", width / 2, height / 6);
+  textSize(16);
+  text("Use the arrow keys to control your ship.\nAvoid obstacles and try to reach the other planet!\nClick to continue.", width / 2, height / 2);
 }
 
 function gameLoop() {
