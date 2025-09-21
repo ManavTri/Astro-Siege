@@ -18,6 +18,9 @@ class Game {
         this.planetPair = new PlanetPair(100, color(0, 255, 0), color(0, 0, 255), width, height);
 
         this.turn = -1;
+        
+        this.p1Score = 0;
+        this.p2Score = 0;
 
         this.obstacles = [];
 
@@ -50,22 +53,34 @@ class Game {
                 this.ship.update();
                 if (this.ship.isOffScreen(this.width, this.height)) {
                     // console.log("player " + this.ship.player + " went off screen");
+                    // doesn't end turn if ship goes off screen, just resets ship
                     this.removeShip();
-                    this.nextTurn();
+                    this.createShip();
                     return;
                 }
                 for (let obstacle of this.obstacles) {
                     if (obstacle.playerCollision(this.ship)) {
                         // console.log("player " + this.ship.player + " hit an obstacle");
                         this.removeShip();
-                        this.nextTurn();
+                        this.createShip();
                         return;
                     }
                 }
                 if (this.planetPair.playerCollision(this.ship)) {
                     // console.log("player " + this.ship.player + " hit the opposite planet");
                     this.removeShip();
-                    this.nextTurn();
+                    if (this.turn === -1) {
+                        this.p1Score++;
+                    } else {
+                        this.p2Score++;
+                    }
+                    this.createShip();
+                }
+                this.currentTime=millis();
+                console.log(this.currentTime-this.initialTime);
+                if(this.currentTime-this.initialTime>10000){
+                this.removeShip();
+                this.nextTurn();
                 }
             }
         }
@@ -107,7 +122,7 @@ class Game {
     createShip(pos = this.getPlanetPos(), vel = createVector(this.turn * -200, 0)) {
         // console.log("creating ship for player " + this.turn);
         if (this.ship === null) {
-            this.ship = new Ship(pos.x, pos.y, vel.x, vel.y, this.turn);
+            this.ship = new Ship(pos.x+60, pos.y, vel.x, vel.y, this.turn);
             // console.log("created ship for player " + this.turn);
         }
     }
@@ -174,6 +189,7 @@ class Game {
         if (this.turnBuffer > 15 && (keyIsDown(32) || keyIsDown(87) || keyIsDown(UP_ARROW))) { // Spacebar or 'W' key or Up Arrow
             this.playing = true;
             this.turnBuffer = 0;
+            this.initialTime = millis();
             noCursor();
         }
     }
