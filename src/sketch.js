@@ -89,6 +89,7 @@ function mouseClicked() {
 
 function mainMenu() {
   background(0);
+  cursor(ARROW);
   menuStarField.run();
   textAlign(CENTER, CENTER);
   fill(255);
@@ -100,6 +101,7 @@ function mainMenu() {
 
 function tutotialScreen() {
   background(0);
+  cursor(ARROW);
   menuStarField.run();
   textAlign(CENTER, CENTER);
   fill(255);
@@ -111,6 +113,8 @@ function tutotialScreen() {
 }
 
 function endScreen() {
+  sceneSelector = 2;
+  cursor(ARROW);
   background(0);
   textAlign(CENTER, CENTER);
   fill(255);
@@ -118,7 +122,7 @@ function endScreen() {
   text(game.winner + " wins!", width / 2, height / 3);
   textSize(16);
   text(game.winner + " had the higher score of " + ((game.winner < 0) ? game.scores[0] : game.scores[1]) + "!", width / 2, height / 2);
-  mainMenu(); // return to main menu
+  // mainMenu(); // return to main menu
 }
 
 function gameLoop() {
@@ -133,7 +137,6 @@ function gameLoop() {
 
   if (game.winner !== 0) {
     running = false; // end game
-    sceneSelector = 2;
     endScreen();
   }
 }

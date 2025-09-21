@@ -33,6 +33,8 @@ class Game {
 
         this.winner = 0; // no winner yet
 
+        this.maxScore = 100; // score to win
+
         this.curObstacleCount = this.obstacles.length; // count for obstacles that can't be removed
     }
 
@@ -40,6 +42,10 @@ class Game {
      * Updates the game elements
      */
     update() {
+        if (this.scores[0] >= this.maxScore || this.scores[1] >= this.maxScore) {
+            this.winner = this.turn;
+            return;
+        }
         if (this.ship !== null) {
             // console.log("updating ship for player " + this.ship.player);
             if (!this.playing) {
