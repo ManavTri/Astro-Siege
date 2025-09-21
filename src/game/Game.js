@@ -49,21 +49,21 @@ class Game {
                 this.keyHeld();
                 this.ship.update();
                 if (this.ship.isOffScreen(this.width, this.height)) {
-                    console.log("player " + this.ship.player + " went off screen");
+                    // console.log("player " + this.ship.player + " went off screen");
                     this.removeShip();
                     this.nextTurn();
                     return;
                 }
                 for (let obstacle of this.obstacles) {
                     if (obstacle.playerCollision(this.ship)) {
-                        console.log("player " + this.ship.player + " hit an obstacle");
+                        // console.log("player " + this.ship.player + " hit an obstacle");
                         this.removeShip();
                         this.nextTurn();
                         return;
                     }
                 }
                 if (this.planetPair.playerCollision(this.ship)) {
-                    console.log("player " + this.ship.player + " hit the opposite planet");
+                    // console.log("player " + this.ship.player + " hit the opposite planet");
                     this.removeShip();
                     this.nextTurn();
                 }
