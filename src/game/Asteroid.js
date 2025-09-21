@@ -1,6 +1,8 @@
-class Asteroid extends Obstacle{
-    constructor(pos, size=30, angle=0, rotSpeed=0.1) {   
-        super(pos, size);
+class Asteroid {
+    constructor(pos, size = 30, angle = 0, rotSpeed = 0.01) {   
+        // super(pos, size);
+        this.pos = pos;
+        this.size = size;
         this.angle = angle;
         this.rotSpeed = rotSpeed;
     }
@@ -11,14 +13,13 @@ class Asteroid extends Obstacle{
 
     render() {
         push()
-        angleMode(DEGREES);
-        this.rotate();
-        translate(a1.pos.x, this.pos.y);
-        rotate(this.angle);
-        strokeWeight(2);
-        stroke(100,100,100);
-        fill(GRAY);
-        square(-this.size/2, -this.size/2, this.size);
+            this.rotate();
+            translate(this.pos.x, this.pos.y);
+            rotate(this.angle * 180 / Math.PI);
+            strokeWeight(2);
+            stroke(100);
+            fill(120);
+            square(-this.size/2, -this.size/2, this.size);
         pop();
     }
 }

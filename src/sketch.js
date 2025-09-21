@@ -13,7 +13,7 @@ function setup() {
 
   frameRate(60); // Set frame rate to 60 FPS
   background(0); // Set background to black
-  noCursor(); // Hide the cursor
+  // noCursor(); // Hide the cursor
 
   // Create a new Game instance
   game = new Game(width, height);
@@ -34,6 +34,6 @@ function draw() {
   game.render();
 }
 
-// function mouseClicked() {
-//   game.createShip();
-// }
+function mouseClicked() {
+  game.addObstacle(new Asteroid(mouseX, mouseY, 50));
+}

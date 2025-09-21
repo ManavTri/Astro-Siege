@@ -76,6 +76,7 @@ class Game {
         this.turn *= -1;
         this.playing = false;
         this.createShip();
+        cursor(ARROW);
     }
 
     /**
@@ -86,6 +87,9 @@ class Game {
         this.planetPair.render();
         if (this.ship !== null) {
             this.ship.render();
+        }
+        for (let obstacle of this.obstacles) {
+            obstacle.render();
         }
     }
 
@@ -129,6 +133,15 @@ class Game {
     }
 
     /**
+     * Adds an obstacle to the game
+     * 
+     * @param {Obstacle} obstacle The obstacle to add
+     */
+    addObstacle(obstacle) {
+        this.obstacles.push(obstacle);
+    }
+
+    /**
      * Handles user input for steering the ship
      * 
      * Uses 'A' and 'D' keys or Left and Right arrow keys to steer the ship
@@ -149,6 +162,7 @@ class Game {
         if (this.count > 15 && keyIsDown(32)) { // Spacebar
             this.playing = true;
             this.count = 0;
+            noCursor();
         }
     }
 }

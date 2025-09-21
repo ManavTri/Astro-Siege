@@ -4,12 +4,16 @@ class Obstacle {
         this.diam = diameter;
     }
 
-    playerCollision(playerPos, radius=this.diam/2) {
+    playerCollision(playerPos, radius = this.diam / 2) {
         if (Math.sqrt(Math.pow(playerPos.x - this.pos.x, 2) +
         Math.pow(playerPos.y - this.pos.y, 2)) <= radius) {
             return true;
         }
         return false;
+    }
+
+    render() {
+        return; // Do nothing, to be overridden by subclasses
     }
 }
 

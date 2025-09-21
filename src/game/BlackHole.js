@@ -1,5 +1,5 @@
-class BlackHole extends Obstacle{
-    constructor(pos, size, rotationSpeed=0.25) {
+class BlackHole {
+    constructor(pos, size, rotationSpeed = 0.25) {
         // sqrt( size^2 + size^2 ) = multi
         super(pos, size);
         this.rotSpeed = rotationSpeed;
@@ -8,7 +8,7 @@ class BlackHole extends Obstacle{
         
     }
 
-    getCurveFromAngle(initialAngle, offset=0) {
+    getCurveFromAngle(initialAngle, offset = 0) {
         let diam = this.size - offset;
         let anchor1 = p5.Vector.fromAngle(initialAngle, diam/2);
         let control1 = p5.Vector.fromAngle(5.17603659+initialAngle, diam*1.118033989);
@@ -36,20 +36,20 @@ class BlackHole extends Obstacle{
 
     render(newPos=this.pos, rotSpeed=this.rotSpeed, curveCount=36, curveSize=Math.max(1,Math.round(this.size+25)/25)) {
         push();
-        angleMode(DEGREES);
-        this.pos = newPos;
-        this.rotAngle += rotSpeed;
-        translate(this.pos.x, this.pos.y);
-        rotate(this.rotAngle);
-        fill(0,0,0);
-        circle(0, 0, this.size);
-        noFill();
-        strokeWeight(2);
-        for (let i = 0; i < 360; i+= 360/curveCount) {
-            let curvePts = this.getCurveFromAngle(i);
-            bezier(curvePts[0].x, curvePts[0].y, curvePts[1].x, curvePts[1].y,
-            curvePts[2].x, curvePts[2].y, curvePts[3].x, curvePts[3].y);
-        }
+            angleMode(DEGREES);
+            this.pos = newPos;
+            this.rotAngle += rotSpeed;
+            translate(this.pos.x, this.pos.y);
+            rotate(this.rotAngle);
+            fill(0,0,0);
+            circle(0, 0, this.size);
+            noFill();
+            strokeWeight(2);
+            for (let i = 0; i < 360; i+= 360/curveCount) {
+                let curvePts = this.getCurveFromAngle(i);
+                bezier(curvePts[0].x, curvePts[0].y, curvePts[1].x, curvePts[1].y,
+                curvePts[2].x, curvePts[2].y, curvePts[3].x, curvePts[3].y);
+            }
         pop();
 
     }

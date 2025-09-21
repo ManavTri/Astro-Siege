@@ -1,2 +1,3 @@
-# Untitled-Rocket-Game
-Steelhacks project
+# Steelhacks Project
+## Untitled Rocket Game
+Game of rockets
