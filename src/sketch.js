@@ -126,7 +126,7 @@ function tutotialScreen() {
   textSize(32);
   text("Tutorial", width / 2, height / 6);
   textSize(16);
-  text("This is a two player game.\nPlace obstacles in the build phase for your opponent, but watch out because obstacles stick around!\nUse W, Up Arrow, or Space Bar to launch your rocket.\nUse A & D or Left & Right Arrow to steer.\nClick to continue.", width / 2, height / 2);
+  text("This is a two player game.\nPlace obstacles in the build phase for your opponent, but watch out because obstacles stick around!\nUse W, Up Arrow, or Space Bar to launch your rocket.\nUse A & D or Left & Right Arrow to steer.\nReach the other planet as many times in 50 seconds to win.\nAfter 15 round or someone reaches 100 score, the game ends.\nClick to continue.", width / 2, height / 2);
   // sceneSelector = 2;
 }
 
