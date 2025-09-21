@@ -35,6 +35,12 @@ class Game {
 
         this.maxScore = 50; // score to win
 
+        this.maxRounds = 15; // max rounds until game over
+
+        this.round = 1;
+
+        this.gameOver = false;
+
         this.curObstacleCount = this.obstacles.length; // count for obstacles that can't be removed
     }
 
@@ -44,6 +50,11 @@ class Game {
     update() {
         if (this.scores[0] >= this.maxScore || this.scores[1] >= this.maxScore) {
             this.winner = this.turn;
+            this.gameOver = true;
+            return;
+        } else if (Math.floor(this.round) > this.maxRounds) {
+            this.gameOver = true;
+            this.winner = (this.scores[0] == this.scores[1]) ? 0 : Math.max(this.scores[0], this.scores[1]);
             return;
         }
         if (this.ship !== null) {
@@ -90,9 +101,9 @@ class Game {
                 this.currentTime=millis();
                 console.log(this.currentTime-this.initialTime);
                 //if 10 seconds have passed, end turn
-                if(this.currentTime-this.initialTime>50000){
-                this.removeShip();
-                this.nextTurn();
+                if(this.currentTime-this.initialTime>5000){ // change back to 50000
+                    this.removeShip();
+                    this.nextTurn();
                 }
             }
         }
@@ -102,6 +113,7 @@ class Game {
      * Advances to the next turn
      */
     nextTurn() {
+        this.round += 0.5;
         this.toolbar.points = 5;
         this.turn *= -1;
         this.playing = false;
