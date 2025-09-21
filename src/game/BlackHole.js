@@ -1,5 +1,5 @@
 class BlackHole {
-    constructor(pos, size, rotationSpeed = 0.25) {
+    constructor(pos, size, rotationSpeed = 0.007) {
         // sqrt( size^2 + size^2 ) = multi
         // super(pos, size);
         this.pos = pos;
@@ -24,11 +24,11 @@ class BlackHole {
         if (this.shipCollision(player)) {
             // Dead Player!
             return true;
-        } else if (this.shipCollision(player, 2)) {
+        } else if (this.shipCollision(player, 10)) {
             // Player Normal Speed is 200
             let dist = Math.sqrt(Math.pow(playerPos.x - this.pos.x, 2) +
                 Math.pow(playerPos.y - this.pos.y, 2));
-            let accelMag = Math.pow((dist/(1.5*this.size)) * 20, 2);
+            let accelMag = Math.max(1/dist, 1/this.size*2)*10000;
             let angle = Math.atan2(this.pos.y-playerPos.y, this.pos.x-playerPos.x);
             player.acc = p5.Vector.fromAngle(angle, accelMag);
             //0 -> 400; 0 -> 20; size/2 -> 2*size
@@ -53,7 +53,8 @@ class BlackHole {
             this.rotAngle += rotSpeed;
             translate(this.pos.x, this.pos.y);
             rotate(this.rotAngle);
-            fill(0,0,0);
+            fill(0, 0, 0);
+            stroke(255, 255, 255);
             circle(0, 0, this.size);
             noFill();
             strokeWeight(2);
