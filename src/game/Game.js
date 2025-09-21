@@ -19,8 +19,7 @@ class Game {
 
         this.turn = -1;
         
-        this.p1Score = 0;
-        this.p2Score = 0;
+        this.scores = [0, 0]; // player 1 score, player 2 score
 
         this.obstacles = [];
 
@@ -76,9 +75,9 @@ class Game {
                     // console.log("player " + this.ship.player + " hit the opposite planet");
                     this.removeShip();
                     if (this.turn === -1) {
-                        this.p1Score++;
+                        this.scores[0]++;
                     } else {
-                        this.p2Score++;
+                        this.scores[1]++;
                     }
                     this.createShip();
                 }
@@ -125,9 +124,9 @@ class Game {
             fill(255);
             textSize(20);
             textAlign(LEFT, TOP);
-            text("Player 1 Score: " + this.p1Score, 10, 10);
+            text("Player 1 Score: " + this.scores[0], 10, 10);
             textAlign(RIGHT, TOP);
-            text("Player 2 Score: " + this.p2Score, this.width - 10, 10);
+            text("Player 2 Score: " + this.scores[1], this.width - 10, 10);
             textAlign(CENTER, TOP);
             text("Player " + (this.turn === -1 ? "1" : "2") + "'s Turn", this.width / 2, 10);
             if (this.playing) {
@@ -143,7 +142,7 @@ class Game {
      * @param {p5.Vector} pos Starting position of the ship (default: left or right side based on turn)
      * @param {p5.Vector} vel Starting velocity of the ship (default: towards center based on turn)
      */
-    createShip(pos = this.getPlanetPos(), vel = createVector(this.turn * (-200-50*((this.turn === -1) ? this.p1Score : this.p2Score)), 0)) {
+    createShip(pos = this.getPlanetPos(), vel = createVector(this.turn * (-200-50*((this.turn === -1) ? this.scores[0] : this.scores[1])), 0).limit(2000)) {
         // console.log("creating ship for player " + this.turn);
         if (this.ship === null) {
             this.ship = new Ship(pos.x-(60*this.turn), pos.y, vel.x, vel.y, this.turn);
