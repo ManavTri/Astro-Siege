@@ -21,14 +21,14 @@ class BlackHole {
 
     playerCollision(player) {
         let playerPos = player.pos;
-        if (this.shipCollision(playerPos)) {
+        if (this.shipCollision(player)) {
             // Dead Player!
             return true;
-        } else if (this.shipCollision(playerPos, 2)) {
+        } else if (this.shipCollision(player, 2)) {
             // Player Normal Speed is 200
             let dist = Math.sqrt(Math.pow(playerPos.x - this.pos.x, 2) +
                 Math.pow(playerPos.y - this.pos.y, 2));
-            let accelMag = Math.pow((dist/(1.5*size)) * 20, 2);
+            let accelMag = Math.pow((dist/(1.5*this.size)) * 20, 2);
             let angle = Math.atan2(this.pos.y-playerPos.y, this.pos.x-playerPos.x);
             player.acc = p5.Vector.fromAngle(angle, accelMag);
             //0 -> 400; 0 -> 20; size/2 -> 2*size
@@ -39,9 +39,9 @@ class BlackHole {
     shipCollision(ship, scale = 1) {
         let vertices = ship.getVertices();
         let d1, d2, d3;
-        d1 = dist(this.pos.x, this.pos.y, p1.x, p1.y);
-        d2 = dist(this.pos.x, this.pos.y, p2.x, p2.y);
-        d3 = dist(this.pos.x, this.pos.y, p3.x, p3.y);
+        d1 = dist(this.pos.x, this.pos.y, vertices[0].x, vertices[0].y);
+        d2 = dist(this.pos.x, this.pos.y, vertices[1].x, vertices[1].y);
+        d3 = dist(this.pos.x, this.pos.y, vertices[2].x, vertices[2].y);
         return (d1 < scale * this.size / 2 || d2 < scale * this.size / 2 || d3 < scale * this.size / 2);
     }
 
