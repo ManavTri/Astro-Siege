@@ -95,6 +95,8 @@ function mainMenu() {
   menuStarField.run();
   textAlign(CENTER, CENTER);
   fill(255);
+  stroke(0);
+  strokeWeight(2);
   textSize(64);
   text("Astro-Siege", width / 2, height / 3);
   textSize(32);
@@ -107,6 +109,8 @@ function tutotialScreen() {
   menuStarField.run();
   textAlign(CENTER, CENTER);
   fill(255);
+  stroke(0);
+  strokeWeight(2);
   textSize(32);
   text("Tutorial", width / 2, height / 6);
   textSize(16);
@@ -120,10 +124,19 @@ function endScreen() {
   background(0);
   textAlign(CENTER, CENTER);
   fill(255);
-  textSize(32);
-  text(game.winner + " wins!", width / 2, height / 3);
-  textSize(16);
-  text(game.winner + " had the higher score of " + ((game.winner < 0) ? game.scores[0] : game.scores[1]) + "!", width / 2, height / 2);
+  stroke(0);
+  strokeWeight(2);
+  if (game.winner !== 0) {
+    textSize(32);
+    text("Player " + ((game.winner === -1) ? "1" : "2") + " wins!", width / 2, height / 3);
+    textSize(16);
+    text("Player " + ((game.winner === -1) ? "1" : "2") + " had the higher score of " + ((game.winner < 0) ? game.scores[0] : game.scores[1]) + "!", width / 2, height / 2);
+  } else {
+    textSize(32);
+    text("Tie Game!", width / 2, height / 3);
+    textSize(16);
+    text("Nobody wins!", width / 2, height / 2);
+  }
   // mainMenu(); // return to main menu
 }
 
@@ -137,7 +150,7 @@ function gameLoop() {
   // Render the game
   game.render();
 
-  if (game.winner !== 0) {
+  if (game.gameOver) {
     running = false; // end game
     endScreen();
   }
