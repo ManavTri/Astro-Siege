@@ -149,7 +149,7 @@ class Game {
             textAlign(CENTER, TOP);
             
             if (this.playing) {
-                text("Player " + (this.turn === -1 ? "1" : "2") + " Turn", this.width / 2, 10);
+                text("Round " + Math.floor(this.round) + "Player " + (this.turn === -1 ? "1" : "2") + " Turn", this.width / 2, 10);
                 let timeLeft = Math.max(0, 50 - Math.floor((millis() - this.initialTime) / 1000));
                 text("Time Left: " + timeLeft, this.width / 2, 30);
             }else{
