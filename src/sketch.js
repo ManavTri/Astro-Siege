@@ -51,7 +51,8 @@ function mouseClicked() {
     else{
       game.toolbar.selected=newSelect;
       if(newSelect==="clear"){
-          game.obstacles=[];
+          game.toolbar.points = 5;
+          game.obstacles = [];
       }
     }
   } else if (!running && showTutorial) {
