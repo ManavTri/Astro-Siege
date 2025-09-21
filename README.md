@@ -10,4 +10,4 @@ Game of rockets
 Hackers:
 * Manav Trivedy - School: mst79@pitt.edu / Personal: manavtrivedy@gmail.com
 * Colton R - School: car415@pitt.edu / Personal: rizzocolton@gmail.com
-* Peter C -
+* Peter C - Personal: 7squidymine@gmail.com
