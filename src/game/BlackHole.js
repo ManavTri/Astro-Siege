@@ -2,6 +2,7 @@ class BlackHole {
     constructor(pos, size, rotationSpeed = 0.25) {
         // sqrt( size^2 + size^2 ) = multi
         // super(pos, size);
+        console.log("Creating black hole at " + pos.x + ", " + pos.y);
         this.pos = pos;
         this.size = size;
         this.rotSpeed = rotationSpeed;
