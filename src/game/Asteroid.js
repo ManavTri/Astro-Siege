@@ -1,5 +1,5 @@
 class Asteroid {
-    constructor(pos, size = 30, angle = 0, rotSpeed = 0.01) {
+    constructor(pos, size = 30, angle = 0, rotSpeed = 0.1) {
         console.log("Creating asteroid at " + pos.x + ", " + pos.y);
         // super(pos, size);
         this.pos = pos;
@@ -12,8 +12,19 @@ class Asteroid {
         this.angle += this.rotSpeed;
     }
 
+    /**
+     * Handle collision detection with a Ship object (triangle and square collision).
+     * @param {Ship} ship The ship to check for collision
+     * @returns {boolean} True if the asteroid collides with the ship, false otherwise
+     */
     playerCollision(ship) {
-        return (dist(ship.pos.x, ship.pos.y, this.pos.x, this.pos.y) <= this.size / 2);
+        let vertices = ship.getVertices();
+        return (vertices[0].x > this.pos.x - this.size / 2 && vertices[0].x < this.pos.x + this.size / 2 &&
+                vertices[0].y > this.pos.y - this.size / 2 && vertices[0].y < this.pos.y + this.size / 2) ||
+               (vertices[1].x > this.pos.x - this.size / 2 && vertices[1].x < this.pos.x + this.size / 2 &&
+                vertices[1].y > this.pos.y - this.size / 2 && vertices[1].y < this.pos.y + this.size / 2) ||
+               (vertices[2].x > this.pos.x - this.size / 2 && vertices[2].x < this.pos.x + this.size / 2 &&
+                vertices[2].y > this.pos.y - this.size / 2 && vertices[2].y < this.pos.y + this.size / 2);
     }
 
     render() {
