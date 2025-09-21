@@ -8,6 +8,6 @@ Game of rockets
 * Win if only you can make it to the other planet
 
 Hackers:
-* Manav Trivedy - mst79@pitt.edu
+* Manav Trivedy - School: mst79@pitt.edu / Personal: manavtrivedy@gmail.com
 * Colton R - School: car415@pitt.edu / Personal: rizzocolton@gmail.com
 * Peter C -
