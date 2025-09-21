@@ -16,7 +16,7 @@ class Toolbar {
     }
     render(){
         push();
-        fill(200);
+        fill(200, 150);
         rect(0,windowHeight-this.height,width,windowHeight);
         for(let button of this.buttons){
             if(this.selected!=='clear' && this.selected===button.type){
