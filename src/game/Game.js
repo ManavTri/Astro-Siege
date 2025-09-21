@@ -86,15 +86,15 @@ class Game {
      */
     render() {
         this.starField.render();
-        if(!this.playing){
-            this.toolbar.render();
-        }
         this.planetPair.render();
         if (this.ship !== null) {
             this.ship.render();
         }
         for (let obstacle of this.obstacles) {
             obstacle.render();
+        }
+        if(!this.playing) {
+            this.toolbar.render();
         }
     }
 
