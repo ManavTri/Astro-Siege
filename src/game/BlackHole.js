@@ -1,7 +1,6 @@
 class BlackHole {
     constructor(pos, size, rotationSpeed = 0.007) {
         // sqrt( size^2 + size^2 ) = multi
-        // super(pos, size);
         console.log("Creating black hole at " + pos.x + ", " + pos.y);
         this.pos = pos;
         this.size = size;
@@ -11,6 +10,8 @@ class BlackHole {
         
     }
 
+    // Creates one curved line of the black hole based on the starting angle;
+    // This will be iterated multiple times to make multiple curves in render()
     getCurveFromAngle(initialAngle, offset = 0) {
         let diam = this.size - offset;
         let anchor1 = p5.Vector.fromAngle(initialAngle, diam/2);
@@ -29,7 +30,7 @@ class BlackHole {
             // Player Normal Speed is 200
             let dist = Math.sqrt(Math.pow(playerPos.x - this.pos.x, 2) +
                 Math.pow(playerPos.y - this.pos.y, 2));
-            let accelMag = Math.max(1/dist, 1/this.size*2)*10000;
+            let accelMag = Math.max(1/dist, 1/this.size*2)*10000; // Inverse Law; Faster the closer to the center
             let angle = Math.atan2(this.pos.y-playerPos.y, this.pos.x-playerPos.x);
             player.acc = p5.Vector.fromAngle(angle, accelMag);
             //0 -> 400; 0 -> 20; size/2 -> 2*size
@@ -52,13 +53,17 @@ class BlackHole {
             // angleMode(DEGREES);
             this.pos = newPos;
             this.rotAngle += rotSpeed;
+
             translate(this.pos.x, this.pos.y);
             rotate(this.rotAngle);
+            
             fill(0, 0, 0);
             stroke(255, 255, 255);
             circle(0, 0, this.size);
+
             noFill();
             strokeWeight(2);
+            // Creates the curves of the black hole
             for (let i = 0; i < 360; i+= 360/curveCount) {
                 let curvePts = this.getCurveFromAngle(i);
                 bezier(curvePts[0].x, curvePts[0].y, curvePts[1].x, curvePts[1].y,
@@ -66,7 +71,6 @@ class BlackHole {
             }
         pop();
 
-    }
 
-    // Update acceleration depending on closeness
+    }
 }
