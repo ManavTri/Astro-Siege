@@ -28,6 +28,8 @@ class Game {
         this.createShip();
 
         this.createToolbar();
+
+        this.winner = 0; // no winner yet
     }
 
     /**
