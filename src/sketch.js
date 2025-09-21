@@ -1,3 +1,5 @@
+// Don't look at my code plz
+
 let running = false; // Game state variable to track if the game is running or in main menu
 let sceneSelector = 0; // Variable to control display of screens
 
