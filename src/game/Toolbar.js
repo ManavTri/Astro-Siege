@@ -3,9 +3,10 @@ class Toolbar {
         this.windowHeight = windowHeight;
         this.windowWidth = windowWidth;
         this.height=120;
-        this.buttons=[
-            {type:"blackhole",x:windowWidth/3,y:this.windowHeight-100,w:100,h:30,label:"Black Hole",icon:new BlackHole(createVector(0,0),20)},
-            {type:"asteroid",x:windowWidth/2,y:this.windowHeight-100,w:100,h:30,label:"Asteroid",icon:new Asteroid(createVector(0,0),20)},
+        this.buttons=[  // MAKE THE AMOUNT OF POINTS NEXT TO THE NAMES CLEANER,
+                        // maybe move the point amount of the obstacles somewhere else
+            {type:"blackhole",x:windowWidth/3,y:this.windowHeight-100,w:100,h:30,label:"Black Hole (5)",icon:new BlackHole(createVector(0,0),20)},
+            {type:"asteroid",x:windowWidth/2,y:this.windowHeight-100,w:100,h:30,label:"Asteroid (1)",icon:new Asteroid(createVector(0,0),20)},
             {type:"clear",x:windowWidth*2/3,y:this.windowHeight-100,w:100,h:30,label:"Clear Obstacles", icon:null}
         ];
         this.selected="clear";
@@ -13,6 +14,7 @@ class Toolbar {
             {x:0, y:windowHeight/4, w:windowWidth/6, h:windowHeight/2},
             {x:windowWidth*5/6, y:windowHeight/4, w:windowWidth/6, h:windowHeight/2}
         ];
+        this.points = 5;
     }
     render(){
         push();
@@ -36,6 +38,13 @@ class Toolbar {
             text(button.label,button.x,button.y);
         }
 
+        // Text for Obstacle Point System
+        fill(255);
+        rect(this.windowWidth*4/5, this.windowHeight-100, 100, 80);
+        fill(0);
+        textSize(30);
+        text(this.points+" / 5", this.windowWidth*5/6, this.windowHeight-60);
+
         // Bounding boxes for starting area
         fill(255,0,0,100);
         rect(0, windowHeight/4, windowWidth/6, windowHeight/2);
@@ -43,6 +52,8 @@ class Toolbar {
 
         pop();
     }
+
+    // 5 points/round. Asteroid: 1 point, Black Hole: 5 points
 
     checkClick(mx,my){
         for(let button of this.buttons){

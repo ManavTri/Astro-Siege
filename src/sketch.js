@@ -38,10 +38,12 @@ function mouseClicked() {
     let newSelect = game.toolbar.checkClick(mouseX, mouseY);
     if (newSelect === null){
       if (!game.toolbar.checkIfClickedStarterArea(mouseX,mouseY)) {
-        if(game.toolbar.selected==="blackhole"){
+        if(game.toolbar.selected==="blackhole" && game.toolbar.points >= 5){
+            game.toolbar.points -= 5;
             game.obstacles.push(new BlackHole(createVector(mouseX,mouseY),50));
         }
-        else if(game.toolbar.selected==="asteroid"){
+        else if(game.toolbar.selected==="asteroid" && game.toolbar.points >= 1){
+            game.toolbar.points -= 1;
             game.obstacles.push(new Asteroid(createVector(mouseX,mouseY),20));
         }
       }
