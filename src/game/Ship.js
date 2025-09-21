@@ -39,7 +39,7 @@ class Ship{
      * @param {number} radius Radius of the circular arc
      * @param {number} angleChange Change in angle (radians) per second
      */
-    moveArc(center, radius, angleChange = Math.PI / 4) {
+    moveArc(center, radius, angleChange = Math.PI) {
         //move the ship in a circular arc around the center point with the given radius and angle change
         //convert deltaTime for current frame to seconds\
         let dt = deltaTime / 1000;

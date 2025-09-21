@@ -23,6 +23,8 @@ class Game {
 
         this.playing = false;
 
+        this.count = 0;
+
         this.createShip();
     }
 
@@ -31,20 +33,21 @@ class Game {
      */
     update() {
         if (this.ship !== null) {
-            console.log("updating ship for player " + this.ship.player);
+            // console.log("updating ship for player " + this.ship.player);
             if (!this.playing) {
-                console.log("waiting to start game for player " + this.ship.player);
+                // console.log("waiting to start game for player " + this.ship.player);
+                this.count++;
                 this.startGame();
                 this.ship.moveArc(this.getPlanetPos(), this.getPlanet().size * 1.1);
                 if (this.playing) {
                     this.ship.resetVelocity();
                 }
             } else {
-                console.log("playing game for player " + this.ship.player);
+                // console.log("playing game for player " + this.ship.player);
                 this.keyHeld();
                 this.ship.update();
                 if (this.planetPair.playerCollision(this.ship) || this.ship.isOffScreen(this.width, this.height)) {
-                    console.log("player " + this.ship.player + " hit something or went off screen");
+                    // console.log("player " + this.ship.player + " hit something or went off screen");
                     this.removeShip();
                     this.nextTurn();
                 }
@@ -79,10 +82,10 @@ class Game {
      * @param {p5.Vector} vel Starting velocity of the ship (default: towards center based on turn)
      */
     createShip(pos = this.getPlanetPos(), vel = createVector(this.turn * -200, 0)) {
-        console.log("creating ship for player " + this.turn);
+        // console.log("creating ship for player " + this.turn);
         if (this.ship === null) {
             this.ship = new Ship(pos.x, pos.y, vel.x, vel.y, this.turn);
-            console.log("created ship for player " + this.turn);
+            // console.log("created ship for player " + this.turn);
         }
     }
 
@@ -129,8 +132,9 @@ class Game {
      * Starts the game, allowing the ship to move freely
      */
     startGame() {
-        if (keyIsDown(32)) { // Spacebar
+        if (this.count > 15 && keyIsDown(32)) { // Spacebar
             this.playing = true;
+            this.count = 0;
         }
     }
 }
