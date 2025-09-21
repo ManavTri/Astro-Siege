@@ -49,11 +49,7 @@ class Planet {
         d1 = dist(this.pos.x, this.pos.y, p1.x, p1.y);
         d2 = dist(this.pos.x, this.pos.y, p2.x, p2.y);
         d3 = dist(this.pos.x, this.pos.y, p3.x, p3.y);
-        if (d1 < this.size / 2 || d2 < this.size / 2 || d3 < this.size / 2) {
-            // console.log("Collision detected with planet!");
-            return true;
-        }
-        return false;
+        return (d1 < this.size / 2 || d2 < this.size / 2 || d3 < this.size / 2);
     }
 
 }
