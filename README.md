@@ -9,5 +9,5 @@ Game of rockets
 
 Hackers:
 * Manav Trivedy - mst79@pitt.edu
-* Colton R -
+* Colton R - School: car415@pitt.edu / Personal: rizzocolton@gmail.com
 * Peter C -
