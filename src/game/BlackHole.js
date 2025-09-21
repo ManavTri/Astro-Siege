@@ -1,4 +1,4 @@
-class BlackHole {
+class BlackHole extends Obstacle {
     constructor(pos, size, rotationSpeed = 0.25) {
         // sqrt( size^2 + size^2 ) = multi
         super(pos, size);

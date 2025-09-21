@@ -35,5 +35,5 @@ function draw() {
 }
 
 function mouseClicked() {
-  game.addObstacle(new Asteroid(mouseX, mouseY, 50));
+  game.addObstacle(new Asteroid(createVector(mouseX, mouseY), 50));
 }

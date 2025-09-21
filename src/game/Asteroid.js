@@ -1,8 +1,6 @@
-class Asteroid {
+class Asteroid extends Obstacle {
     constructor(pos, size = 30, angle = 0, rotSpeed = 0.01) {   
-        // super(pos, size);
-        this.pos = pos;
-        this.size = size;
+        super(pos, size);
         this.angle = angle;
         this.rotSpeed = rotSpeed;
     }
