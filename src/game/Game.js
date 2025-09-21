@@ -153,7 +153,7 @@ class Game {
                 let timeLeft = Math.max(0, 50 - Math.floor((millis() - this.initialTime) / 1000));
                 text("Time Left: " + timeLeft, this.width / 2, 30);
             }else{
-                text("Build Phase For Player " + (this.turn === 1 ? "1" : "2") + " - When Ready, Player " + (this.turn !== 1 ? "1" : "2") + " Press Space to Start", this.width / 2, 10);
+                text("Build Phase For Player " + (this.turn === 1 ? "1" : "2") + " - When Ready, Player " + (this.turn !== 1 ? "1" : "2") + " Launch your Rocket!", this.width / 2, 10);
             }
         pop();
     }
