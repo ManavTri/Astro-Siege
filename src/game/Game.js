@@ -23,7 +23,7 @@ class Game {
 
         this.playing = false;
 
-        this.frameCount = 0;
+        this.turnBuffer = 0;
 
         this.createShip();
 
@@ -38,7 +38,7 @@ class Game {
             // console.log("updating ship for player " + this.ship.player);
             if (!this.playing) {
                 // console.log("waiting to start game for player " + this.ship.player);
-                this.frameCount++;
+                this.turnBuffer++;
                 this.startGame();
                 this.ship.moveArc(this.getPlanetPos(), this.getPlanet().size * 0.85);
                 if (this.playing) {
@@ -173,7 +173,7 @@ class Game {
     startGame() {
         if (this.count > 15 && (keyIsDown(32) || keyIsDown(87) || keyIsDown(UP_ARROW))) { // Spacebar or 'W' key or Up Arrow
             this.playing = true;
-            this.frameCount = 0;
+            this.turnBuffer = 0;
             noCursor();
         }
     }
