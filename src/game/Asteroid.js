@@ -12,19 +12,15 @@ class Asteroid {
         this.angle += this.rotSpeed;
     }
 
-    playerCollision(playerPos, radius = this.diam / 2) {
-        if (Math.sqrt(Math.pow(playerPos.x - this.pos.x, 2) +
-        Math.pow(playerPos.y - this.pos.y, 2)) <= radius) {
-            return true;
-        }
-        return false;
+    playerCollision(ship) {
+        return (dist(ship.pos.x, ship.pos.y, this.pos.x, this.pos.y) <= this.size / 2);
     }
 
     render() {
         push()
             this.rotate();
             translate(this.pos.x, this.pos.y);
-            rotate(this.angle * 180 / Math.PI);
+            rotate(this.angle);
             strokeWeight(2);
             stroke(100);
             fill(120);
