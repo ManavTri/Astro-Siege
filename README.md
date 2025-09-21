@@ -1,5 +1,5 @@
 # Steelhacks Project
-## Untitled Rocket Game
+## Astro-Siege
 Game of rockets
 * Play against a friend on the same screen
 * Place down obstacles to hinder your opponent
