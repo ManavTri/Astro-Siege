@@ -34,6 +34,8 @@ class Toolbar {
             }
             rect(button.x - button.w/2, button.y - button.h/2, button.w, button.h);
             fill(0);
+            textFont(subFont);
+            textSize(10);
             textAlign(CENTER,CENTER);
             text(button.label,button.x,button.y);
         }
@@ -42,6 +44,7 @@ class Toolbar {
         fill(255);
         rect(this.windowWidth*4/5, this.windowHeight-100, 100, 80);
         fill(0);
+        textFont(subFont);
         textSize(30);
         text(this.points+" / 5", this.windowWidth*5/6, this.windowHeight-60);
 

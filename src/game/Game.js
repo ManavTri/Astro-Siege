@@ -128,6 +128,7 @@ class Game {
         // Display scores, turns, and timer
         push();
             fill(255);
+            textFont(subFont);
             textSize(20);
             textAlign(LEFT, TOP);
             text("Player 1 Score: " + this.scores[0], 10, 10);
@@ -136,7 +137,7 @@ class Game {
             textAlign(CENTER, TOP);
             
             if (this.playing) {
-                text("Player " + (this.turn === -1 ? "1" : "2") + "'s Turn", this.width / 2, 10);
+                text("Player " + (this.turn === -1 ? "1" : "2") + " Turn", this.width / 2, 10);
                 let timeLeft = Math.max(0, 50 - Math.floor((millis() - this.initialTime) / 1000));
                 text("Time Left: " + timeLeft, this.width / 2, 30);
             }else{

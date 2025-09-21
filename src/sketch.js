@@ -12,6 +12,16 @@ let game;
 // Create starfield for menu background
 let menuStarField;
 
+// Custom Space Font
+let font;
+let subFont;
+
+function preload() {
+  // Loads custom space font
+  font = loadFont('/src/game/Sterion-BLLld.ttf');
+  subFont = loadFont('/src/game/SpeedyRegular-7BLoE.ttf');
+}
+
 // Setup function to initialize the canvas and StarField
 function setup() {
   // Set canvas dimensions
@@ -95,8 +105,9 @@ function mainMenu() {
   menuStarField.run();
   textAlign(CENTER, CENTER);
   fill(255);
+  textFont(font);
   textSize(64);
-  text("Astro-Siege", width / 2, height / 3);
+  text("AstroSiege", width / 2, height / 3);
   textSize(32);
   text("Click to Start", width / 2, height / 2);
 }
@@ -107,10 +118,11 @@ function tutotialScreen() {
   menuStarField.run();
   textAlign(CENTER, CENTER);
   fill(255);
+  textFont(font);
   textSize(32);
   text("Tutorial", width / 2, height / 6);
   textSize(16);
-  text("This is a two player game.\nPlace obstacles on your turn, but watch out because you also have to get to the other side!\nUse W, Up Arrow, or Space Bar to launch your rocket.\nUse A/D or Left/Right Arrow to steer.\nClick to continue.", width / 2, height / 2);
+  text("This is a two player game.\nPlace obstacles on your turn, but watch out because you also have to get to the other side!\nUse W, Up Arrow, or Space Bar to launch your rocket.\nUse A & D or Left & Right Arrow to steer.\nClick to continue.", width / 2, height / 2);
   // sceneSelector = 2;
 }
 
@@ -120,6 +132,7 @@ function endScreen() {
   background(0);
   textAlign(CENTER, CENTER);
   fill(255);
+  textFont(font);
   textSize(32);
   text(game.winner + " wins!", width / 2, height / 3);
   textSize(16);
