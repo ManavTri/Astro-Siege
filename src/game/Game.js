@@ -101,7 +101,7 @@ class Game {
                 this.currentTime=millis();
                 console.log(this.currentTime-this.initialTime);
                 //if 10 seconds have passed, end turn
-                if(this.currentTime-this.initialTime>5000){ // change back to 50000
+                if(this.currentTime-this.initialTime>50000){ // change back to 50000
                     this.removeShip();
                     this.nextTurn();
                 }
