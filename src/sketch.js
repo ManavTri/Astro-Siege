@@ -32,16 +32,22 @@ function draw() {
 
   // Render the game
   game.render();
+
+  // fill(255,0,0,100);
+  // rect(0, windowHeight/4, windowWidth/6, windowHeight/2);
+  // rect(windowWidth*5/6, windowHeight/4, windowWidth/6, windowHeight/2);
 }
 
 function mouseClicked() {
   let newSelect = game.toolbar.checkClick(mouseX, mouseY);
   if (newSelect === null){
-    if(game.toolbar.selected==="blackhole"){
-        game.obstacles.push(new BlackHole(createVector(mouseX,mouseY),50));
-    }
-    else if(game.toolbar.selected==="asteroid"){
-        game.obstacles.push(new Asteroid(createVector(mouseX,mouseY),20));
+    if (!game.toolbar.checkIfClickedStarterArea(mouseX,mouseY)) {
+      if(game.toolbar.selected==="blackhole"){
+          game.obstacles.push(new BlackHole(createVector(mouseX,mouseY),50));
+      }
+      else if(game.toolbar.selected==="asteroid"){
+          game.obstacles.push(new Asteroid(createVector(mouseX,mouseY),20));
+      }
     }
   }
   else{
