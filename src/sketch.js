@@ -89,7 +89,7 @@ function tutotialScreen() {
   text("Use the arrow keys to control your ship.\nAvoid obstacles and try to reach the other planet!\nClick to continue.", width / 2, height / 2);
 }
 
-function gameOverScreen() {
+function endScreen() {
   background(0);
   textAlign(CENTER, CENTER);
   fill(255);
