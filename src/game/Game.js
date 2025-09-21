@@ -46,8 +46,22 @@ class Game {
                 // console.log("playing game for player " + this.ship.player);
                 this.keyHeld();
                 this.ship.update();
-                if (this.planetPair.playerCollision(this.ship) || this.ship.isOffScreen(this.width, this.height)) {
-                    // console.log("player " + this.ship.player + " hit something or went off screen");
+                if (this.ship.isOffScreen(this.width, this.height)) {
+                    console.log("player " + this.ship.player + " went off screen");
+                    this.removeShip();
+                    this.nextTurn();
+                    return;
+                }
+                for (let obstacle of this.obstacles) {
+                    if (obstacle.playerCollision(this.ship)) {
+                        console.log("player " + this.ship.player + " hit an obstacle");
+                        this.removeShip();
+                        this.nextTurn();
+                        return;
+                    }
+                }
+                if (this.planetPair.playerCollision(this.ship)) {
+                    console.log("player " + this.ship.player + " hit the opposite planet");
                     this.removeShip();
                     this.nextTurn();
                 }

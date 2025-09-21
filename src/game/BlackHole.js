@@ -17,12 +17,12 @@ class BlackHole extends Obstacle{
         return [anchor1, control1, control2, anchor2];
     }
 
-    collidesWithPlayer(player) {
+    playerCollision(player) {
         let playerPos = player.pos;
-        if (super.collidesWithPlayer(playerPos)) {
+        if (super.playerCollision(playerPos)) {
             // Dead Player!
             return true;
-        } else if (super.collidesWithPlayer(playerPos, size*2)) {
+        } else if (super.playerCollision(playerPos, size*2)) {
             // Player Normal Speed is 200
             let dist = Math.sqrt(Math.pow(playerPos.x - this.pos.x, 2) +
                 Math.pow(playerPos.y - this.pos.y, 2));
