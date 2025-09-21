@@ -112,9 +112,13 @@ class Game {
         }
     }
 
+    /**
+     * Creates the toolbar for selecting obstacles
+     */
     createToolbar() {
         this.toolbar = new Toolbar();
     }
+
     /**
      * Get planet in PlanetPair for the current turn
      * 
