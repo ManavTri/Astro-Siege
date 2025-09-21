@@ -43,12 +43,11 @@ function mouseClicked() {
     else if(game.toolbar.selected==="asteroid"){
         game.obstacles.push(new Asteroid(createVector(mouseX,mouseY),20));
     }
-    else if(game.toolbar.selected==="clear"){
-        game.obstacles=[];
-    }
   }
   else{
     game.toolbar.selected=newSelect;
-    console.log("selected "+newSelect);
+    if(newSelect==="clear"){
+        game.obstacles=[];
+    }
   }
 }
