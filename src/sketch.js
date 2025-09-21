@@ -18,8 +18,8 @@ let subFont;
 
 function preload() {
   // Loads custom space font
-  font = loadFont('/src/game/Sterion-BLLld.ttf');
-  subFont = loadFont('/src/game/SpeedyRegular-7BLoE.ttf');
+  font = loadFont('game/Sterion-BLLld.ttf');
+  subFont = loadFont('game/SpeedyRegular-7BLoE.ttf');
 }
 
 // Setup function to initialize the canvas and StarField
