@@ -1,12 +1,23 @@
-class Asteroid extends Obstacle {
-    constructor(pos, size = 30, angle = 0, rotSpeed = 0.01) {   
-        super(pos, size);
+class Asteroid {
+    constructor(pos, size = 30, angle = 0, rotSpeed = 0.01) {
+        console.log("Creating asteroid at " + pos.x + ", " + pos.y);
+        // super(pos, size);
+        this.pos = pos;
+        this.size = size;
         this.angle = angle;
         this.rotSpeed = rotSpeed;
     }
 
     rotate() {
         this.angle += this.rotSpeed;
+    }
+
+    playerCollision(playerPos, radius = this.diam / 2) {
+        if (Math.sqrt(Math.pow(playerPos.x - this.pos.x, 2) +
+        Math.pow(playerPos.y - this.pos.y, 2)) <= radius) {
+            return true;
+        }
+        return false;
     }
 
     render() {
