@@ -22,6 +22,8 @@ class Game {
         this.obstacles = [];
 
         this.playing = false;
+
+        this.createShip();
     }
 
     /**
@@ -29,13 +31,20 @@ class Game {
      */
     update() {
         if (this.ship !== null) {
+            console.log("updating ship for player " + this.ship.player);
             if (!this.playing) {
+                console.log("waiting to start game for player " + this.ship.player);
                 this.startGame();
-                this.ship.moveArc(this.getPlanetPos(), this.planetPair.size * 1.1);
+                this.ship.moveArc(this.getPlanetPos(), this.getPlanet().size * 1.1);
+                if (this.playing) {
+                    this.ship.resetVelocity();
+                }
             } else {
+                console.log("playing game for player " + this.ship.player);
                 this.keyHeld();
                 this.ship.update();
                 if (this.planetPair.playerCollision(this.ship) || this.ship.isOffScreen(this.width, this.height)) {
+                    console.log("player " + this.ship.player + " hit something or went off screen");
                     this.removeShip();
                     this.nextTurn();
                 }
@@ -75,6 +84,15 @@ class Game {
             this.ship = new Ship(pos.x, pos.y, vel.x, vel.y, this.turn);
             console.log("created ship for player " + this.turn);
         }
+    }
+
+    /**
+     * Get planet in PlanetPair for the current turn
+     * 
+     * @returns {Planet} Planet for the current turn
+     */
+    getPlanet() {
+        return (this.turn < 0) ? this.planetPair.planets[0] : this.planetPair.planets[1];
     }
 
     /**

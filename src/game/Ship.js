@@ -17,7 +17,7 @@ class Ship{
         this.width = 40;
         this.acc = createVector(0,0);
         this.player = player;
-        this.orbitAngle = 0;
+        this.orbitAngle = this.player === -1 ? 0 : Math.PI; // start on side depending on player
     }
 
     /**
@@ -39,24 +39,23 @@ class Ship{
      * @param {number} radius Radius of the circular arc
      * @param {number} angleChange Change in angle (radians) per second
      */
-    moveArc(center, radius, angleChange = Math.PI / 25) {
+    moveArc(center, radius, angleChange = Math.PI / 4) {
         //move the ship in a circular arc around the center point with the given radius and angle change
         //convert deltaTime for current frame to seconds\
         let dt = deltaTime / 1000;
-        this.orbitAngle += angleChange * dt;
+        this.orbitAngle += this.player * angleChange * dt;
         this.pos.x = center.x + radius * cos(this.orbitAngle);
         this.pos.y = center.y + radius * sin(this.orbitAngle);
         //update velocity to be perpendicular to the circle
         this.vel.x = cos(this.orbitAngle);
         this.vel.y = sin(this.orbitAngle);
-        // this.vel.setMag(this.originalVel.mag()); //set velocity magnitude to original speed
     }
 
     /**
      * Reset velocity to original velocity
      */
     resetVelocity() {
-        this.vel = this.originalVel.copy();
+        this.vel.normalize().mult(this.originalVel.mag());
     }
 
     /**
@@ -148,7 +147,7 @@ class Ship{
      * Run the ship by moving and rendering it
      */
     run() {
-        this.move();
+        this.update();
         this.render();
     }
 }

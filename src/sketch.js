@@ -1,9 +1,6 @@
 // Declare variables to store canvas dimensions for easy access and to avoid changes in size
 let width, height;
 
-// Declare new Ship object
-let ship;
-
 // Declare new Game object to run game logic
 let game;
 
@@ -20,8 +17,6 @@ function setup() {
 
   // Create a new Game instance
   game = new Game(width, height);
-
-  game.createShip();
 
   // Initial render
   game.render();
