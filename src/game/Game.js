@@ -33,6 +33,8 @@ class Game {
         this.createToolbar();
 
         this.winner = 0; // no winner yet
+
+        this.curObstacleCount = this.obstacles.length; // count for obstacles that can't be removed
     }
 
     /**
@@ -48,6 +50,7 @@ class Game {
                 this.ship.moveArc(this.getPlanetPos(), this.getPlanet().size * 0.85);
                 if (this.playing) {
                     this.ship.resetVelocity();
+                    this.curObstacleCount = this.obstacles.length; // makes new obstacles unremovable
                 }
             } else {
                 // console.log("playing game for player " + this.ship.player);
@@ -187,6 +190,17 @@ class Game {
      */
     addObstacle(obstacle) {
         this.obstacles.push(obstacle);
+    }
+
+    /**
+     * Removes obstacles added during the current turn
+     * 
+     * Keeps obstacles that were present at the start of the turn
+     */
+    removeNewObstacles() {
+        for (let i = this.obstacles.length - 1; i >= this.curObstacleCount; i--) {
+            this.obstacles.pop();
+        }
     }
 
     /**
