@@ -63,6 +63,7 @@ class Game {
                 for (let obstacle of this.obstacles) {
                     if (obstacle.playerCollision(this.ship)) {
                         // console.log("player " + this.ship.player + " hit an obstacle");
+                        //doesn't end turn if ship hits obstacle, just resets ship
                         this.removeShip();
                         this.createShip();
                         return;
@@ -80,7 +81,8 @@ class Game {
                 }
                 this.currentTime=millis();
                 console.log(this.currentTime-this.initialTime);
-                if(this.currentTime-this.initialTime>10000){
+                //if 10 seconds have passed, end turn
+                if(this.currentTime-this.initialTime>50000){
                 this.removeShip();
                 this.nextTurn();
                 }
@@ -114,6 +116,22 @@ class Game {
         if(!this.playing) {
             this.toolbar.render();
         }
+        
+        // Display scores, turns, and timer
+        push();
+            fill(255);
+            textSize(20);
+            textAlign(LEFT, TOP);
+            text("Player 1 Score: " + this.p1Score, 10, 10);
+            textAlign(RIGHT, TOP);
+            text("Player 2 Score: " + this.p2Score, this.width - 10, 10);
+            textAlign(CENTER, TOP);
+            text("Player " + (this.turn === -1 ? "1" : "2") + "'s Turn", this.width / 2, 10);
+            if (this.playing) {
+                let timeLeft = Math.max(0, 50 - Math.floor((millis() - this.initialTime) / 1000));
+                text("Time Left: " + timeLeft, this.width / 2, 30);
+            }
+        pop();
     }
 
     /**
@@ -122,10 +140,10 @@ class Game {
      * @param {p5.Vector} pos Starting position of the ship (default: left or right side based on turn)
      * @param {p5.Vector} vel Starting velocity of the ship (default: towards center based on turn)
      */
-    createShip(pos = this.getPlanetPos(), vel = createVector(this.turn * -200, 0)) {
+    createShip(pos = this.getPlanetPos(), vel = createVector(this.turn * (-200-50*((this.turn === -1) ? this.p1Score : this.p2Score)), 0)) {
         // console.log("creating ship for player " + this.turn);
         if (this.ship === null) {
-            this.ship = new Ship(pos.x+60, pos.y, vel.x, vel.y, this.turn);
+            this.ship = new Ship(pos.x-(60*this.turn), pos.y, vel.x, vel.y, this.turn);
             // console.log("created ship for player " + this.turn);
         }
     }
