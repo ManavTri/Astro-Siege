@@ -33,7 +33,7 @@ class Game {
 
         this.winner = 0; // no winner yet
 
-        this.maxScore = 100; // score to win
+        this.maxScore = 50; // score to win
 
         this.curObstacleCount = this.obstacles.length; // count for obstacles that can't be removed
     }
