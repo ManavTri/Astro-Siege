@@ -159,7 +159,7 @@ class Game {
      * Starts the game, allowing the ship to move freely
      */
     startGame() {
-        if (this.count > 15 && keyIsDown(32)) { // Spacebar
+        if (this.count > 15 && (keyIsDown(32) || keyIsDown(87) || keyIsDown(UP_ARROW))) { // Spacebar or 'W' key or Up Arrow
             this.playing = true;
             this.count = 0;
             noCursor();
