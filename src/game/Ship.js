@@ -26,8 +26,12 @@ class Ship{
     update() {
         //convert deltaTime for current frame to seconds
         let dt = deltaTime / 1000;
+        //make da a small fraction of the acceleration vector for euler integration
+        let da = this.acc.copy().mult(dt);
+        //euler integration add velocity to da every frame
+        this.vel.add(da);
         //make dv a small fraction of the velocity vector for euler integration
-        let dv = createVector(this.vel.x * dt, this.vel.y * dt);
+        let dv = this.vel.copy().mult(dt);
         //euler integration add position to dv every frame
         this.pos.add(dv);
     }
