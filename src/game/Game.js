@@ -31,6 +31,8 @@ class Game {
         this.createShip();
 
         this.createToolbar();
+
+        this.winner = 0; // no winner yet
     }
 
     /**
@@ -90,6 +92,7 @@ class Game {
      * Advances to the next turn
      */
     nextTurn() {
+        this.toolbar.points = 5;
         this.turn *= -1;
         this.playing = false;
         this.createShip();
