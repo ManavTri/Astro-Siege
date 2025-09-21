@@ -21,10 +21,10 @@ class BlackHole {
 
     playerCollision(player) {
         let playerPos = player.pos;
-        if (super.playerCollision(playerPos)) {
+        if (this.shipCollision(playerPos)) {
             // Dead Player!
             return true;
-        } else if (super.playerCollision(playerPos, size*2)) {
+        } else if (this.shipCollision(playerPos, 2)) {
             // Player Normal Speed is 200
             let dist = Math.sqrt(Math.pow(playerPos.x - this.pos.x, 2) +
                 Math.pow(playerPos.y - this.pos.y, 2));
@@ -36,9 +36,19 @@ class BlackHole {
         return false;
     }
 
+    shipCollision(ship, scale = 1) {
+        let vertices = ship.getVertices();
+        let d1, d2, d3;
+        d1 = dist(this.pos.x, this.pos.y, p1.x, p1.y);
+        d2 = dist(this.pos.x, this.pos.y, p2.x, p2.y);
+        d3 = dist(this.pos.x, this.pos.y, p3.x, p3.y);
+        return (d1 < scale * this.size / 2 || d2 < scale * this.size / 2 || d3 < scale * this.size / 2);
+    }
+
+
     render(newPos=this.pos, rotSpeed=this.rotSpeed, curveCount=36, curveSize=Math.max(1,Math.round(this.size+25)/25)) {
         push();
-            angleMode(DEGREES);
+            // angleMode(DEGREES);
             this.pos = newPos;
             this.rotAngle += rotSpeed;
             translate(this.pos.x, this.pos.y);
