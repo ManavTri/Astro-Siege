@@ -21,6 +21,7 @@ class Toolbar {
             else{
                 fill(255);
             }
+            noStroke();
             if(button.icon!==null){
             button.icon.pos=createVector(button.x,button.y+60);
             button.icon.render();

@@ -85,10 +85,10 @@ class Game {
      * Renders the game elements
      */
     render() {
+        this.starField.render();
         if(!this.playing){
             this.toolbar.render();
         }
-        this.starField.render();
         this.planetPair.render();
         if (this.ship !== null) {
             this.ship.render();
