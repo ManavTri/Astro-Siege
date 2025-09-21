@@ -86,7 +86,7 @@ function tutotialScreen() {
   textSize(32);
   text("Tutorial", width / 2, height / 6);
   textSize(16);
-  text("Use the arrow keys to control your ship.\nAvoid obstacles and try to reach the other planet!\nClick to continue.", width / 2, height / 2);
+  text("This is a two player game.\nPlace obstacles on your turn, but watch out because you also have to get to the other side!\nUse W, Up Arrow, or Space Bar to launch your rocket.\nUse A/D or Left/Right Arrow to steer.\nClick to continue.", width / 2, height / 2);
 }
 
 function endScreen() {
