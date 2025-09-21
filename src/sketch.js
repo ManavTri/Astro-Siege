@@ -35,5 +35,20 @@ function draw() {
 }
 
 function mouseClicked() {
-  game.addObstacle(new BlackHole(createVector(mouseX, mouseY), 50));
+  let newSelect = game.toolbar.checkClick(mouseX, mouseY);
+  if (newSelect === null){
+    if(game.toolbar.selected==="blackhole"){
+        game.obstacles.push(new BlackHole(createVector(mouseX,mouseY),50));
+    }
+    else if(game.toolbar.selected==="asteroid"){
+        game.obstacles.push(new Asteroid(createVector(mouseX,mouseY),20));
+    }
+    else if(game.toolbar.selected==="clear"){
+        game.obstacles=[];
+    }
+  }
+  else{
+    game.toolbar.selected=newSelect;
+    console.log("selected "+newSelect);
+  }
 }
