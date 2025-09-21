@@ -34,6 +34,8 @@ class BlackHole {
             let angle = Math.atan2(this.pos.y-playerPos.y, this.pos.x-playerPos.x);
             player.acc = p5.Vector.fromAngle(angle, accelMag);
             //0 -> 400; 0 -> 20; size/2 -> 2*size
+        }else{
+            player.acc = createVector(0,0);
         }
         return false;
     }
