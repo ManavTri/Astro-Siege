@@ -2,11 +2,11 @@ class Toolbar {
     constructor(){
         this.windowHeight = windowHeight;
         this.windowWidth = windowWidth;
-        this.height=100;
+        this.height=120;
         this.buttons=[
-            {type:"blackhole",x:windowWidth/3,y:this.windowHeight-75,w:100,h:30,label:"Black Hole"},
-            {type:"asteroid",x:windowWidth/2,y:this.windowHeight-75,w:100,h:30,label:"Asteroid"},
-            {type:"clear",x:windowWidth*2/3,y:this.windowHeight-75,w:100,h:30,label:"Clear Obstacles"}
+            {type:"blackhole",x:windowWidth/3,y:this.windowHeight-100,w:100,h:30,label:"Black Hole",icon:new BlackHole(createVector(0,0),20)},
+            {type:"asteroid",x:windowWidth/2,y:this.windowHeight-100,w:100,h:30,label:"Asteroid",icon:new Asteroid(createVector(0,0),20)},
+            {type:"clear",x:windowWidth*2/3,y:this.windowHeight-100,w:100,h:30,label:"Clear Obstacles", icon:null}
         ];
         this.selected="clear";
     }
@@ -20,6 +20,10 @@ class Toolbar {
             }
             else{
                 fill(255);
+            }
+            if(button.icon!==null){
+            button.icon.pos=createVector(button.x,button.y+60);
+            button.icon.render();
             }
             rect(button.x - button.w/2, button.y - button.h/2, button.w, button.h);
             fill(0);
